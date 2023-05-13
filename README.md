@@ -1,0 +1,1 @@
+# Simple Preferences & Proto DataStore Demo App
