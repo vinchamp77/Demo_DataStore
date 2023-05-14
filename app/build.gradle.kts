@@ -66,4 +66,6 @@ dependencies {
     implementation("androidx.core:core-splashscreen:1.0.1")
 
     implementation("com.github.vinchamp77:buildutils:0.0.8")
+
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 }
