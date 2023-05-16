@@ -15,11 +15,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import vtsen.hashnode.dev.datastoredemoapp.ui.dataStore
 
 @Composable
 fun SettingsScreen(doneCallback: ()->Unit) {
+
+    val viewModel: SettingsScreenViewModel = viewModel(
+        factory = ViewModelFactory(LocalContext.current.dataStore)
+    )
 
     Column(
         modifier = Modifier
@@ -36,7 +43,7 @@ fun SettingsScreen(doneCallback: ()->Unit) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text("Option 1")
+            Text(viewModel.getBooleanOptionDesc())
             Switch(
                 checked = true,
                 onCheckedChange = { },
@@ -52,7 +59,7 @@ fun SettingsScreen(doneCallback: ()->Unit) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text("Option 1")
+            Text(viewModel.getIntOptionDesc())
             Switch(
                 checked = true,
                 onCheckedChange = { },
