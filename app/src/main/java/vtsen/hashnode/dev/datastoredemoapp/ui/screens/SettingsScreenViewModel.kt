@@ -12,7 +12,9 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-class SettingsScreenViewModel(private val dataStore: DataStore<Preferences>) : ViewModel() {
+class SettingsScreenViewModel(
+    private val dataStore: DataStore<Preferences>
+) : ViewModel() {
 
     private val booleanOptionName = "Boolean Option"
     private val booleanOptionKey = booleanPreferencesKey(booleanOptionName)

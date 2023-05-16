@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 
 class ViewModelFactory(
     private val dataStore: DataStore<Preferences>,
-) : ViewModelProvider.NewInstanceFactory() {
+) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
 
