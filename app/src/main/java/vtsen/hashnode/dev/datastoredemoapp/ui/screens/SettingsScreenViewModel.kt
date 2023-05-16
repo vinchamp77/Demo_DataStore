@@ -8,25 +8,24 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class SettingsScreenViewModel(private val dataStore: DataStore<Preferences>) : ViewModel() {
 
-    private val preferencesState = dataStore.data.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.Eagerly,
-        initialValue = null)
+    private val booleanOptionName = "Boolean Option"
+    private val booleanOptionKey = booleanPreferencesKey(booleanOptionName)
 
-    private val booleanOptionDesc = "Boolean Option"
-    private val booleanOptionKey = booleanPreferencesKey(booleanOptionDesc)
-    fun getBooleanOptionDesc() = booleanOptionDesc
-    fun getBooleanOptionValue() : Boolean {
-        preferencesState.value?.let { preferences ->
-            return preferences[booleanOptionKey]?: false
-        }
-        return false
-    }
+    val booleanOptionState = dataStore.data.map { preferences ->
+            preferences[booleanOptionKey] ?: false
+        }.stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = false
+        )
+
+    fun getBooleanOptionName() = booleanOptionName
     fun saveBooleanOptionValue(value: Boolean) {
         viewModelScope.launch {
             dataStore.edit { preferences ->
@@ -35,16 +34,18 @@ class SettingsScreenViewModel(private val dataStore: DataStore<Preferences>) : V
         }
     }
 
-    private val intOptionDesc = "Int Option"
-    private val intOptionKey = intPreferencesKey(intOptionDesc)
+    private val intOptionName = "Int Option"
+    private val intOptionKey = intPreferencesKey(intOptionName)
 
-    fun getIntOptionDesc() = intOptionDesc
-    fun getIntOptionValue() : Int {
-        preferencesState.value?.let { preferences ->
-            return preferences[intOptionKey]?: 0
-        }
-        return 0
-    }
+    val intOptionState = dataStore.data.map { preferences ->
+        preferences[intOptionKey] ?: 0
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = 0
+    )
+
+    fun getIntOptionName() = intOptionName
     fun saveIntOptionValue(value: Int) {
         viewModelScope.launch {
             dataStore.edit { preferences ->
