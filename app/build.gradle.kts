@@ -1,6 +1,7 @@
 plugins {
     id ("com.android.application")
     id ("org.jetbrains.kotlin.android")
+    id ("com.google.protobuf") version("0.9.0")
 }
 
 android {
@@ -70,4 +71,23 @@ dependencies {
     implementation("com.github.vinchamp77:buildutils:0.0.8")
 
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    implementation("androidx.datastore:datastore:1.0.0")
+    implementation("com.google.protobuf:protobuf-javalite:3.21.12")
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.19.4"
+    }
+
+    generateProtoTasks {
+        all().forEach { task ->
+            task.builtins {
+                create("java") {
+                    option("lite")
+                }
+            }
+        }
+    }
 }
