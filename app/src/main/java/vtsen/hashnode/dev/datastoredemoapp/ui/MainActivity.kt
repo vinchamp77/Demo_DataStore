@@ -5,16 +5,25 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.datastore.core.DataStore
+import androidx.datastore.dataStore
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import vtsen.hashnode.dev.datastoredemoapp.UserPreferences
+import vtsen.hashnode.dev.datastoredemoapp.data.UserPreferencesSerializer
 import vtsen.hashnode.dev.datastoredemoapp.ui.screens.MainScreen
 import vtsen.hashnode.dev.datastoredemoapp.ui.theme.DataStoreDemoAppTheme
 
 val Context.dataStore by preferencesDataStore(name = "settings")
+
+val Context.userPreferencesStore: DataStore<UserPreferences> by dataStore(
+    fileName = "UserPreferences.pb",
+    serializer = UserPreferencesSerializer
+)
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
