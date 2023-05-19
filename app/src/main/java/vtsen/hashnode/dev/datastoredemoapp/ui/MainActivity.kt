@@ -13,16 +13,16 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import vtsen.hashnode.dev.datastoredemoapp.UserPreferences
-import vtsen.hashnode.dev.datastoredemoapp.data.UserPreferencesSerializer
+import vtsen.hashnode.dev.datastoredemoapp.ProtoPreferences
+import vtsen.hashnode.dev.datastoredemoapp.data.ProtoPreferencesSerializer
 import vtsen.hashnode.dev.datastoredemoapp.ui.screens.MainScreen
 import vtsen.hashnode.dev.datastoredemoapp.ui.theme.DataStoreDemoAppTheme
 
-val Context.dataStore by preferencesDataStore(name = "settings")
+val Context.prefsDataStore by preferencesDataStore(name = "settings")
 
-val Context.userPreferencesStore: DataStore<UserPreferences> by dataStore(
+val Context.protoDataStore: DataStore<ProtoPreferences> by dataStore(
     fileName = "UserPreferences.pb",
-    serializer = UserPreferencesSerializer
+    serializer = ProtoPreferencesSerializer
 )
 
 class MainActivity : ComponentActivity() {

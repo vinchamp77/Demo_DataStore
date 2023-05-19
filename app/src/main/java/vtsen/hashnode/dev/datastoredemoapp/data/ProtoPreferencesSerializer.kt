@@ -3,28 +3,28 @@ package vtsen.hashnode.dev.datastoredemoapp.data
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
 import com.google.protobuf.InvalidProtocolBufferException
-import vtsen.hashnode.dev.datastoredemoapp.UserPreferences
+import vtsen.hashnode.dev.datastoredemoapp.ProtoPreferences
 import java.io.InputStream
 import java.io.OutputStream
 
 /**
- * Serializer for the [UserPreferences] object defined in UserPreferences.proto.
+ * Serializer for the [ProtoPreferences] object defined in ProtoPreferences.proto.
  */
-object UserPreferencesSerializer : Serializer<UserPreferences> {
-    override val defaultValue: UserPreferences
-        = UserPreferences.getDefaultInstance()
+object ProtoPreferencesSerializer : Serializer<ProtoPreferences> {
+    override val defaultValue: ProtoPreferences
+        = ProtoPreferences.getDefaultInstance()
 
     override suspend fun readFrom(
         input: InputStream
-    ): UserPreferences {
+    ): ProtoPreferences {
         try {
-            return UserPreferences.parseFrom(input)
+            return ProtoPreferences.parseFrom(input)
         } catch (exception: InvalidProtocolBufferException) {
             throw CorruptionException("Cannot read proto.", exception)
         }
     }
 
     override suspend fun writeTo(
-        t: UserPreferences,
+        t: ProtoPreferences,
         output: OutputStream) = t.writeTo(output)
 }

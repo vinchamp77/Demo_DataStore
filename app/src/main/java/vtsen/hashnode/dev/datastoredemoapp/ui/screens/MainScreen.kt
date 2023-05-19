@@ -18,18 +18,27 @@ import vtsen.hashnode.dev.datastoredemoapp.ui.theme.DataStoreDemoAppTheme
 @Composable
 fun MainScreen() {
 
-    var showUserSettings by remember { mutableStateOf(false) }
+    var showPrefsDataStoreScreen by remember { mutableStateOf(false) }
+    var showProtoDataStoreScreen by remember { mutableStateOf(false) }
 
-    if(showUserSettings) {
-        PrefsDataStoreScreen(doneCallback = {showUserSettings = false})
+    if(showPrefsDataStoreScreen) {
+        PrefsDataStoreScreen(doneCallback = {showPrefsDataStoreScreen = false})
+
+    } else if(showProtoDataStoreScreen) {
+        ProtoDataStoreScreen(doneCallback = {showProtoDataStoreScreen = false})
+
     } else {
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Button(onClick = { showUserSettings = true}) {
+            Button(onClick = { showPrefsDataStoreScreen = true}) {
                 Text(text = "Preferences DataStore")
+            }
+
+            Button(onClick = { showProtoDataStoreScreen = true}) {
+                Text(text = "Proto DataStore")
             }
         }
     }

@@ -24,13 +24,13 @@ import androidx.compose.ui.unit.dp
 import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import vtsen.hashnode.dev.datastoredemoapp.ui.dataStore
+import vtsen.hashnode.dev.datastoredemoapp.ui.prefsDataStore
 
 @Composable
 fun PrefsDataStoreScreen(doneCallback: ()->Unit) {
 
     val viewModel: PrefsDataStoreScreenViewModel = viewModel(
-        factory = ViewModelFactory(LocalContext.current.dataStore)
+        factory = ViewModelFactory(LocalContext.current.prefsDataStore)
     )
 
     val booleanOptionValue by viewModel.booleanOptionState.collectAsStateWithLifecycle()
@@ -93,6 +93,6 @@ fun PrefsDataStoreScreen(doneCallback: ()->Unit) {
 
 @Preview
 @Composable
-fun PreviewUserSettingsScreen() {
+fun PreviewPrefsDataStoreScreen() {
     PrefsDataStoreScreen(doneCallback = {})
 }
