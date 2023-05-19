@@ -27,9 +27,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import vtsen.hashnode.dev.datastoredemoapp.ui.dataStore
 
 @Composable
-fun SettingsScreen(doneCallback: ()->Unit) {
+fun PrefsDataStoreScreen(doneCallback: ()->Unit) {
 
-    val viewModel: SettingsScreenViewModel = viewModel(
+    val viewModel: PrefsDataStoreScreenViewModel = viewModel(
         factory = ViewModelFactory(LocalContext.current.dataStore)
     )
 
@@ -94,5 +94,5 @@ fun SettingsScreen(doneCallback: ()->Unit) {
 @Preview
 @Composable
 fun PreviewUserSettingsScreen() {
-    SettingsScreen(doneCallback = {})
+    PrefsDataStoreScreen(doneCallback = {})
 }

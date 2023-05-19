@@ -21,7 +21,7 @@ fun MainScreen() {
     var showUserSettings by remember { mutableStateOf(false) }
 
     if(showUserSettings) {
-        SettingsScreen(doneCallback = {showUserSettings = false})
+        PrefsDataStoreScreen(doneCallback = {showUserSettings = false})
     } else {
         Column(
             modifier = Modifier.fillMaxSize(),

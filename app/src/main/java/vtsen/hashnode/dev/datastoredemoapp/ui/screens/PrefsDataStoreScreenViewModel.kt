@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-class SettingsScreenViewModel(
+class PrefsDataStoreScreenViewModel(
     private val dataStore: DataStore<Preferences>
 ) : ViewModel() {
 

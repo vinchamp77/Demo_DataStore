@@ -11,9 +11,9 @@ class ViewModelFactory(
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
 
-        if (modelClass.isAssignableFrom(SettingsScreenViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(PrefsDataStoreScreenViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return SettingsScreenViewModel(
+            return PrefsDataStoreScreenViewModel(
                 dataStore
             ) as T
         }
